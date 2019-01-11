@@ -5,14 +5,13 @@ defmodule ElBoardingWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", ElBoardingWeb do
+  scope "/api" do
     pipe_through :api
-  end
 
-  scope "/auth", ElBoarding do
-#    pipe_through :browser
+    forward "/graphql", Absinthe.Plug, schema: ElBoardingWeb.Schema
 
-    get "/:provider", AuthController, :request
-    get "/:provider/callback", AuthController, :callback
+    if Mix.env == :dev do
+      forward "/graphiql", Absinthe.Plug.GraphiQL, schema: ElBoardingWeb.Schema
+    end
   end
 end

@@ -4,15 +4,23 @@ defmodule ElBoarding.Accounts do
   """
 
   import Ecto.Query, warn: false
-  alias ElBoarding.Repo
 
+  alias ElBoarding.Repo
   alias ElBoarding.Accounts.User
+  alias ElBoarding.Accounts.UserItem
+  alias ElBoarding.Accounts.UserTopic
+  alias ElBoarding.Activities.Item
+  alias ElBoarding.Activities.Topic
 
   def list_users do
     Repo.all(User)
   end
 
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user!(id) do
+    User
+    |> Repo.get!(id)
+    |> Repo.preload([topics: [items: [:user_items]]])
+  end
 
   def create_user(attrs \\ %{}) do
     %User{}
@@ -33,11 +41,6 @@ defmodule ElBoarding.Accounts do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
-
-  alias ElBoarding.Accounts.UserItem
-  alias ElBoarding.Activities.Item
-  alias ElBoarding.Activities.Topic
-
 
   def list_user_items do
     Repo.all(UserItem)
@@ -66,8 +69,6 @@ defmodule ElBoarding.Accounts do
   def change_user_item(%UserItem{} = user_item) do
     UserItem.changeset(user_item, %{})
   end
-
-  alias ElBoarding.Accounts.UserTopic
 
   def list_user_topics do
     Repo.all(UserTopic)

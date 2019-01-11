@@ -2,6 +2,7 @@ defmodule ElBoarding.Activities.Topic do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias ElBoarding.Activities.Item
 
   schema "topics" do
     field :description, :string

@@ -1,6 +1,7 @@
 defmodule ElBoarding.Activities.Item do
   use Ecto.Schema
   import Ecto.Changeset
+  alias ElBoarding.Accounts.UserItem
 
 
   schema "items" do
@@ -9,6 +10,7 @@ defmodule ElBoarding.Activities.Item do
     field :title, :string
 
     belongs_to :topic, Topic
+    has_many :user_items, UserItem
 
     timestamps()
   end

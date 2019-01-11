@@ -1,9 +1,10 @@
 defmodule ElBoarding.Activities do
 
   import Ecto.Query, warn: false
-  alias ElBoarding.Repo
 
+  alias ElBoarding.Repo
   alias ElBoarding.Activities.Topic
+  alias ElBoarding.Activities.Item
 
   def list_topics do
     Repo.all(Topic)
@@ -31,10 +32,15 @@ defmodule ElBoarding.Activities do
     Topic.changeset(topic, %{})
   end
 
-  alias ElBoarding.Activities.Item
 
-  def list_items do
+  def list_items() do
     Repo.all(Item)
+  end
+
+  def list_topic_items(topic_id) do
+     Repo.all(from i in Item,
+             where: i.topic_id == ^topic_id,
+             select: i)
   end
 
   def get_item!(id), do: Repo.get!(Item, id)

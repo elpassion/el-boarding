@@ -4,11 +4,12 @@ defmodule ElBoarding.Accounts.User do
 
   alias ElBoarding.Accounts.UserItem
   alias ElBoarding.Accounts.UserTopic
+  alias ElBoarding.Activities.Item
 
   schema "users" do
     field :email, :string
 
-    has_many :user_topics, UserTopic
+    many_to_many :topics, ElBoarding.Activities.Topic, join_through: "user_topics"
     has_many :user_items, UserItem
 
     timestamps()

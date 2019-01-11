@@ -20,7 +20,7 @@ defmodule ElBoarding.MixProject do
   def application do
     [
       mod: {ElBoarding.Application, []},
-      extra_applications: [:logger, :runtime_tools, :dotenv, :ueberauth_google]
+      extra_applications: [:logger, :runtime_tools, :dotenv ]
     ]
   end
 
@@ -43,9 +43,9 @@ defmodule ElBoarding.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:absinthe, "~> 1.4.0"},
       {:absinthe_plug, "~> 1.4"},
-      {:dotenv, "~> 3.0.0"},
       {:absinthe_ecto, ">= 0.0.0"},
-      {:ueberauth_google, "~> 0.8"}
+      {:dotenv, "~> 3.0.0"},
+      {:poison, "~> 3.1"}
     ]
   end
 
