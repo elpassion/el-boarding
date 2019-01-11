@@ -20,7 +20,7 @@ defmodule ElBoarding.MixProject do
   def application do
     [
       mod: {ElBoarding.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :dotenv, :ueberauth_google]
     ]
   end
 
@@ -40,7 +40,12 @@ defmodule ElBoarding.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:absinthe, "~> 1.4.0"},
+      {:absinthe_plug, "~> 1.4"},
+      {:dotenv, "~> 3.0.0"},
+      {:absinthe_ecto, ">= 0.0.0"},
+      {:ueberauth_google, "~> 0.8"}
     ]
   end
 
@@ -57,4 +62,7 @@ defmodule ElBoarding.MixProject do
       test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
+
+  defp app_list(:dev), do: [:dotenv | app_list()]
+  defp app_list, do: [:logger, :runtime_tool, :ueberauth_google]
 end

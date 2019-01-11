@@ -57,8 +57,6 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
 config :el_boarding, ElBoarding.Repo,
-  username: "postgres",
-  password: "postgres",
   database: "el_boarding_dev",
   hostname: "localhost",
   pool_size: 10
