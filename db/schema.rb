@@ -15,21 +15,6 @@ ActiveRecord::Schema.define(version: 2019_04_04_125828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answers", force: :cascade do |t|
-    t.string "description"
-    t.boolean "correct"
-    t.bigint "question_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_answers_on_question_id"
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "administrators", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -39,6 +24,15 @@ ActiveRecord::Schema.define(version: 2019_04_04_125828) do
     t.datetime "remember_token_expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.string "description"
+    t.boolean "correct"
+    t.bigint "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
   create_table "epic_lists", force: :cascade do |t|
@@ -56,6 +50,12 @@ ActiveRecord::Schema.define(version: 2019_04_04_125828) do
 
   create_table "epics", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
