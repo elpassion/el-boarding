@@ -1,5 +1,6 @@
 class EpicList < ApplicationRecord
   validates :name, presence: true
 
-  has_and_belongs_to_many :epics
+  has_many :epic_lists_epics
+  has_many :epics, through: :epic_lists_epics
 end

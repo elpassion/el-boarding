@@ -1,4 +1,4 @@
-Trestle.resource(:epic_list, model: EpicList) do
+Trestle.resource(:epic_list) do
   menu do
     item :epic_list, icon: 'fa fa-list'
   end

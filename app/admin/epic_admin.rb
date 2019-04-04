@@ -1,4 +1,4 @@
-Trestle.resource(:epic, model: Epic) do
+Trestle.resource(:epic) do
   menu do
     item :epics, icon: 'fa fa-list-alt'
   end
