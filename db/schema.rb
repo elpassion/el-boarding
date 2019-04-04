@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 2019_04_04_104723) do
     t.index ["epic_list_id"], name: "index_epics_on_epic_list_id"
   end
 
+  create_table "administrators", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "remember_token"
+    t.datetime "remember_token_expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.datetime "created_at", null: false

@@ -9,6 +9,7 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.3'
 gem 'trestle'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'trestle-auth'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
