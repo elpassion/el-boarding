@@ -1,0 +1,44 @@
+LineLength:
+  Max: 130
+
+MethodLength:
+  Max: 40
+
+Metrics/AbcSize:
+  Max: 40
+
+Metrics/ClassLength:
+  Max: 120
+
+Metrics/CyclomaticComplexity:
+  Max: 15
+
+Metrics/PerceivedComplexity:
+  Max: 15
+
+Metrics/BlockLength:
+  Max: 100
+  Exclude:
+    - 'spec/**/*'
+
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'config.ru'
+    - 'Rakefile'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+
+Style/GuardClause:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

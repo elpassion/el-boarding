@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_101241) do
+ActiveRecord::Schema.define(version: 2019_04_04_104723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "epic_lists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "epics", force: :cascade do |t|
+    t.string "name"
+    t.bigint "epic_list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["epic_list_id"], name: "index_epics_on_epic_list_id"
+  end
 
   create_table "administrators", force: :cascade do |t|
     t.string "email"
@@ -32,4 +46,5 @@ ActiveRecord::Schema.define(version: 2019_04_04_101241) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "epics", "epic_lists"
 end
