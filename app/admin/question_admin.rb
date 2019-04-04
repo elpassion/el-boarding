@@ -10,5 +10,6 @@ Trestle.resource(:questions, mode: Question) do
 
   form do
     text_field :description
+    render 'answers'
   end
 end
