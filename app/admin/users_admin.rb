@@ -1,4 +1,4 @@
-Trestle.resource(:users, mode: User) do
+Trestle.resource(:users) do
   menu do
     item :users, icon: "fa fa-star"
   end

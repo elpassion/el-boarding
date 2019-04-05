@@ -59,6 +59,25 @@ ActiveRecord::Schema.define(version: 2019_04_04_192334) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+  
+  create_table "tasks", force: :cascade do |t|
+    t.text "name"
+    t.text "description"
+    t.bigint "epic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["epic_id"], name: "index_tasks_on_epic_id"
+  end
+
+  create_table "user_tasks", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "task_id"
+    t.boolean "done"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_user_tasks_on_task_id"
+    t.index ["user_id"], name: "index_user_tasks_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -67,4 +86,7 @@ ActiveRecord::Schema.define(version: 2019_04_04_192334) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "tasks", "epics"
+  add_foreign_key "user_tasks", "tasks"
+  add_foreign_key "user_tasks", "users"
 end
