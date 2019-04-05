@@ -4,12 +4,12 @@ Trestle.resource(:users) do
   end
 
   table do
-    column :name
+    column :email
     column :created_at, align: :center
     actions
   end
 
   form do
-    text_field :name
+    text_field :email
   end
 end
