@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_05_112606) do
+ActiveRecord::Schema.define(version: 2019_04_05_114029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(version: 2019_04_05_112606) do
     t.index ["epic_id"], name: "index_tasks_on_epic_id"
   end
 
+  create_table "user_answers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "answer_id"
+    t.boolean "response", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_user_answers_on_answer_id"
+    t.index ["user_id"], name: "index_user_answers_on_user_id"
+  end
+
   create_table "user_tasks", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "task_id"
@@ -90,6 +100,8 @@ ActiveRecord::Schema.define(version: 2019_04_05_112606) do
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "epics"
   add_foreign_key "tasks", "epics"
+  add_foreign_key "user_answers", "answers"
+  add_foreign_key "user_answers", "users"
   add_foreign_key "user_tasks", "tasks"
   add_foreign_key "user_tasks", "users"
 end
