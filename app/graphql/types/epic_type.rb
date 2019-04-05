@@ -11,18 +11,4 @@ class Types::EpicType < Types::BaseObject
   def task(id:)
     Task.find(id)
   end
-
-  def tasks
-    user_tasks.map(&:task)
-  end
-
-  private
-
-  def user_tasks
-    @user_tasks ||= UserTask.where(user: user)
-  end
-
-  def user
-    User.first
-  end
 end
