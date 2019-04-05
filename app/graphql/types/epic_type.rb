@@ -6,6 +6,7 @@ class Types::EpicType < Types::BaseObject
     description 'Tasks'
     argument :id, ID, required: true
   end
+  field :question, Types::QuestionType, null: true, description: 'Question'
 
   def task(id:)
     Task.find(id)
