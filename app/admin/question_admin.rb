@@ -10,6 +10,7 @@ Trestle.resource(:questions) do
 
   form do
     text_field :description
+    select :epic_id, Epic.all, label: 'Epic'
     render 'answers'
   end
 end
