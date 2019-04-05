@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_125828) do
+ActiveRecord::Schema.define(version: 2019_04_04_192334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2019_04_04_125828) do
     t.datetime "remember_token_expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.string "description"
+    t.boolean "correct", default: false, null: false
+    t.bigint "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
   create_table "epic_lists", force: :cascade do |t|
@@ -45,6 +54,12 @@ ActiveRecord::Schema.define(version: 2019_04_04_125828) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+  
   create_table "tasks", force: :cascade do |t|
     t.text "name"
     t.text "description"
@@ -70,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_04_04_125828) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "answers", "questions"
   add_foreign_key "tasks", "epics"
   add_foreign_key "user_tasks", "tasks"
   add_foreign_key "user_tasks", "users"

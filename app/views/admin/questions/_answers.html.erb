@@ -1,0 +1,9 @@
+<div class="nested-fields-container">
+  <%= form.label :answers %>
+  <%= form.fields_for :answers do |answer| %>
+    <%= render 'answer_fields', f: answer %>
+  <% end %>
+  <div class="nested-field-links">
+    <%= link_to_add_association 'Add Answer', form, :answers, class: "btn btn-success" %>
+  </div>
+</div>
