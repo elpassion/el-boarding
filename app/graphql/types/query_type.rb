@@ -1,12 +1,12 @@
 module Types
   class QueryType < Types::BaseObject
     field :epic_list, EpicListType, null: false do
-      description "Epic lists"
+      description 'Epic lists'
       argument :id, ID, required: true
     end
 
     field :epic, EpicType, null: false do
-      description "Epics"
+      description 'Epics'
       argument :id, ID, required: true
     end
 
