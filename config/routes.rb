@@ -7,9 +7,13 @@ Rails.application.routes.draw do
     resources :users, only: %i[new edit], module: 'users_admin', controller: 'admin'
     resources :questions, only: %i[new edit], module: 'questions_admin', controller: 'admin'
     resources :tasks, only: %i[new edit], module: 'tasks_admin', controller: 'admin'
-    
+
     scope :auth do
       resources :administrators_admin, only: %i[new edit], module: 'auth/administrators_admin', controller: 'admin'
     end
+  end
+
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql'
   end
 end
