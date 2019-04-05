@@ -1,4 +1,4 @@
-Trestle.resource(:questions, mode: Question) do
+Trestle.resource(:questions) do
   menu do
     item :questions, icon: 'fa fa-question'
   end
