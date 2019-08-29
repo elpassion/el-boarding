@@ -3,6 +3,10 @@ Trestle.resource(:epic) do
     item :epics, icon: 'fa fa-list-alt'
   end
 
+  scopes do
+    scope :undeleted, -> { Epic.where(hidden: false) }
+  end
+
   table do
     column :name
     column :created_at, align: :center
@@ -24,4 +28,13 @@ Trestle.resource(:epic) do
       concat admin_link_to("New Task", admin: :tasks, action: :new, params: { epic_id: epic }, class: "btn btn-success")
     end
   end
+
+  controller do
+    def destroy
+      epic = Epic.find(params[:id])
+      epic.update(hidden: true)
+      redirect_to epic_admin_index_path
+    end
+  end
+
 end
