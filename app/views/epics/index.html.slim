@@ -1,0 +1,7 @@
+- @epic_lists.each do |list|
+    span class="badge badge-pill badge-success"
+      = list.name
+    ul
+      - list.epics.each do |epic|
+        li = epic.name
+    br
