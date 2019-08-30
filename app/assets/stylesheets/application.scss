@@ -56,3 +56,10 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.switch-user {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 5000;
+}
