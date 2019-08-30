@@ -4,13 +4,16 @@ Trestle.resource(:epic) do
   end
 
   scopes do
-    scope :undeleted, -> { Epic.where(hidden: false) }
+    scope :deleted, -> { Epic.unscoped.where(hidden: true) }
+    scope :undeleted, -> { Epic.default_scoped }
   end
 
   table do
     column :name
     column :created_at, align: :center
-    actions
+    actions do |toolbar, instance, admin|
+      toolbar.link 'Make hidden', admin.path(:make_hidden, id: instance.id), class: 'btn btn-danger'
+    end
   end
 
   form do |epic|
@@ -31,8 +34,14 @@ Trestle.resource(:epic) do
 
   controller do
     def destroy
-      epic = Epic.find(params[:id])
-      epic.update(hidden: true)
+      epic = Epic.unscoped.find(params[:id])
+      epic.hidden ? epic.update(hidden: false) : epic.update(hidden: true)
+      redirect_to epic_admin_index_path
+    end
+
+    def make_hidden
+      epic = Epic.unscoped.find(params[:id])
+      epic.hidden ? epic.update(hidden: false) : epic.update(hidden: true)
       redirect_to epic_admin_index_path
     end
   end
