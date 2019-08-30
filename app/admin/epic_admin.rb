@@ -12,7 +12,7 @@ Trestle.resource(:epic) do
     column :name
     column :created_at, align: :center
     actions do |toolbar, instance, admin|
-      toolbar.link 'Make hidden', admin.path(:make_hidden, id: instance.id), class: 'btn btn-danger'
+      toolbar.link 'Delete', admin.path(:make_hidden, id: instance.id), class: 'btn btn-danger', icon: 'fa fa-trash-o'
     end
   end
 
@@ -28,7 +28,7 @@ Trestle.resource(:epic) do
         actions
       end
 
-      concat admin_link_to("New Task", admin: :tasks, action: :new, params: { epic_id: epic }, class: "btn btn-success")
+      concat admin_link_to('New Task', admin: :tasks, action: :new, params: { epic_id: epic }, class: 'btn btn-success')
     end
   end
 
@@ -46,4 +46,8 @@ Trestle.resource(:epic) do
     end
   end
 
+  routes do
+    get :make_hidden, on: :member
+    post :make_hidden, on: :member
+  end
 end
