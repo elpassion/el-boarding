@@ -1,0 +1,33 @@
+.container
+  - @epic_lists.in_groups_of(2, false) do |group|
+    .row.align-items-center.how-it-works.d-flex
+      .col-2.text-center.d-inline-flex.justify-content-center.align-items-center class=(group[0].id == @epic_lists.last.id ? 'top' : 'bottom')
+        .circle.font-weight-bold
+          = group[0].name
+      .col-6
+        - group[0].epics.each do |epic|
+          h6
+            = epic.name
+    - if group.size == 2
+      .row.timeline
+        .col-2
+          .corner.top-right
+        .col-8
+          hr
+        .col-2
+          .corner.left-bottom
+      .row.align-items-center.justify-content-end.how-it-works.d-flex
+        .col-6.text-right
+          - group[1].epics.each do |epic|
+            h6
+              = epic.name
+        .col-2.text-center.full.d-inline-flex.justify-content-center.align-items-center
+          .circle.font-weight-bold
+            = group[1].name
+      .row.timeline
+        .col-2
+          .corner.right-bottom
+        .col-8
+          hr
+        .col-2
+          .corner.top-left

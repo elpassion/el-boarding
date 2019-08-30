@@ -23,7 +23,8 @@ Trestle.resource(:epic) do
 
     tab :tasks, badge: epic.tasks.size do
       table epic.tasks, admin: :tasks do
-        column :description, link: true
+        column :name, link: true
+        column :description
         column :created_at, align: :center
         actions
       end
