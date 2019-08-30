@@ -12,7 +12,7 @@ Trestle.resource(:epic) do
     column :name
     column :created_at, align: :center
     actions do |toolbar, instance, admin|
-      toolbar.link 'Delete', admin.path(:make_hidden, id: instance.id), class: 'btn btn-danger', icon: 'fa fa-trash-o'
+      toolbar.link 'Delete', admin.path(:update_hidden, id: instance.id), class: 'btn btn-danger', icon: 'fa fa-trash-o'
     end
   end
 
@@ -39,7 +39,7 @@ Trestle.resource(:epic) do
       redirect_to epic_admin_index_path
     end
 
-    def make_hidden
+    def update_hidden
       epic = Epic.unscoped.find(params[:id])
       epic.hidden ? epic.update(hidden: false) : epic.update(hidden: true)
       redirect_to epic_admin_index_path
@@ -47,7 +47,7 @@ Trestle.resource(:epic) do
   end
 
   routes do
-    get :make_hidden, on: :member
-    post :make_hidden, on: :member
+    get :update_hidden, on: :member
+    post :update_hidden, on: :member
   end
 end
