@@ -62,7 +62,7 @@ group :development do
   gem 'rubocop', require: false
 end
 
-group :staging, :development do
+group :staging, :development, :test do
   gem 'switch_user'
 end
 
